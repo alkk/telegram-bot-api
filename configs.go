@@ -556,6 +556,8 @@ func (config StickerConfig) files() []RequestFile {
 type VideoConfig struct {
 	BaseFile
 	Thumb             RequestFileData
+	Width             int
+	Height            int
 	Duration          int
 	Caption           string
 	ParseMode         string
@@ -569,6 +571,8 @@ func (config VideoConfig) params() (Params, error) {
 		return params, err
 	}
 
+	params.AddNonZero("width", config.Width)
+	params.AddNonZero("height", config.Height)
 	params.AddNonZero("duration", config.Duration)
 	params.AddNonEmpty("caption", config.Caption)
 	params.AddNonEmpty("parse_mode", config.ParseMode)
