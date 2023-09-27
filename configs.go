@@ -563,6 +563,7 @@ type VideoConfig struct {
 	ParseMode         string
 	CaptionEntities   []MessageEntity
 	SupportsStreaming bool
+	HasSpoiler        bool
 }
 
 func (config VideoConfig) params() (Params, error) {
@@ -577,6 +578,7 @@ func (config VideoConfig) params() (Params, error) {
 	params.AddNonEmpty("caption", config.Caption)
 	params.AddNonEmpty("parse_mode", config.ParseMode)
 	params.AddBool("supports_streaming", config.SupportsStreaming)
+	params.AddBool("has_spoiler", config.HasSpoiler)
 	err = params.AddInterface("caption_entities", config.CaptionEntities)
 
 	return params, err
